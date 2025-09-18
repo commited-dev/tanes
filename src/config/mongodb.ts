@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { NODE_ENV, MONGODB_URI } from "./env.ts";
+import { NODE_ENV, MONGODB_URI } from "./env.js";
 
 if (!MONGODB_URI) {
   throw new Error(

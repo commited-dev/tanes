@@ -1,6 +1,6 @@
-import app from "./app.ts";
-import { PORT } from "./config/env.ts";
-import { connectDB } from "./config/mongodb.ts";
+import app from "./app.js";
+import { PORT } from "./config/env.js";
+import { connectDB } from "./config/mongodb.js";
 
 app.listen(PORT, async () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
