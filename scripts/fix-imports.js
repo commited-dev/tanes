@@ -1,23 +1,26 @@
-import fs from "fs";
+import { readdir, readFile, writeFile } from "fs/promises";
 import path from "path";
 
-const distDir = path.join(process.cwd(), "dist");
+const distDir = path.resolve("./dist");
 
-function walk(dir) {
-  const files = fs.readdirSync(dir);
-  for (const file of files) {
-    const fullPath = path.join(dir, file);
-    const stat = fs.statSync(fullPath);
-    if (stat.isDirectory()) {
-      walk(fullPath);
-    } else if (fullPath.endsWith(".js")) {
-      let content = fs.readFileSync(fullPath, "utf-8");
-      // replace .ts imports with .js
-      content = content.replace(/(from\s+['"]\.\/.*?)(\.ts)(['"])/g, "$1.js$3");
-      fs.writeFileSync(fullPath, content, "utf-8");
+async function processFile(filePath) {
+  let content = await readFile(filePath, "utf8");
+  // Replace `.ts` imports with `.js`
+  content = content.replace(/from\s+["'](.*)\.ts["']/g, 'from "$1.js"');
+  await writeFile(filePath, content, "utf8");
+}
+
+async function processDirectory(dir) {
+  const entries = await readdir(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      await processDirectory(fullPath);
+    } else if (entry.isFile() && entry.name.endsWith(".js")) {
+      await processFile(fullPath);
     }
   }
 }
 
-walk(distDir);
-console.log("✅ Fixed .ts imports to .js in dist/");
+await processDirectory(distDir);
+console.log("✅ Fixed imports in dist/");
