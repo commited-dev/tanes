@@ -1,1 +1,0 @@
-export declare const PORT: string | undefined, SERVER_URL: string | undefined, NODE_ENV: string | undefined, MONGODB_URI: string | undefined, JWT_SECRET: string | undefined, JWT_EXPIRES_IN: string | undefined;
