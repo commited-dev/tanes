@@ -9,8 +9,4 @@ app.use(express.json());
 
 app.use("/api/v1/auth", authRouter);
 
-app.get("/", (req: Request, res: Response) => {
-  res.json({ message: "Hello from Express + TypeScript + ESM 🚀" });
-});
-
 export default app;
