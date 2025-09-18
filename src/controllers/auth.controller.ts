@@ -4,9 +4,9 @@ import jwt from "jsonwebtoken";
 
 import type { Request, Response, NextFunction } from "express";
 
-import { JWT_SECRET, JWT_EXPIRES_IN } from "../config/env.ts";
+import { JWT_SECRET, JWT_EXPIRES_IN } from "../config/env.js";
 
-import User from "../models/user.model.ts";
+import User from "../models/user.model.js";
 
 export const login = async (
   req: Request,
