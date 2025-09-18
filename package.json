@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts",
-    "build": "tsc",
+    "dev": "nodemon",
+    "build": "tsc -p tsconfig.prod.json",
     "start": "node dist/server.js"
   },
   "dependencies": {
