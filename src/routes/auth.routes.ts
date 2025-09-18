@@ -1,0 +1,13 @@
+import { Router } from "express";
+import type { Request, Response } from "express";
+import { login, logout, register } from "../controllers/auth.controller.ts";
+
+const authRouter = Router();
+
+authRouter.post("/login", login);
+
+authRouter.post("/register", register);
+
+authRouter.post("/logout", logout);
+
+export default authRouter;
