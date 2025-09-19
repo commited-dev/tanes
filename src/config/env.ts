@@ -18,3 +18,5 @@ export const SERVER_URL =
 export const MONGODB_URI = getEnv("MONGODB_URI");
 export const JWT_SECRET = getEnv("JWT_SECRET");
 export const JWT_EXPIRES_IN = getEnv("JWT_EXPIRES_IN", false) || "1d";
+export const ADMIN_ROLE = getEnv("ADMIN_ROLE", false) || "admin";
+export const USER_ROLE = getEnv("USER_ROLE", false) || "user";
