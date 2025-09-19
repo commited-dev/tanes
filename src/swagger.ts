@@ -2,6 +2,23 @@ import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import { Express } from "express";
 import { docPaths } from "./docs/index.js";
+import { NODE_ENV, PORT, SERVER_URL } from "./config/env.js";
+
+// Dynamically set servers based on environment
+const servers =
+  NODE_ENV === "production"
+    ? [
+        {
+          url: SERVER_URL || "https://tanes.onrender.com",
+          description: "Production (Render)",
+        },
+      ]
+    : [
+        {
+          url: `http://localhost:${PORT || 5500}`,
+          description: "Local development",
+        },
+      ];
 
 const options: swaggerJsdoc.Options = {
   definition: {
@@ -11,6 +28,17 @@ const options: swaggerJsdoc.Options = {
       version: "1.0.0",
       description: "API documentation",
     },
+    servers: servers,
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
+    security: [{ bearerAuth: [] }],
     paths: {},
   },
   apis: docPaths,
