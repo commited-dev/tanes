@@ -2,14 +2,14 @@ import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import { Express } from "express";
 import { docPaths } from "./docs/index.js";
-import { NODE_ENV, PORT, SERVER_URL } from "./config/env.js";
+import { NODE_ENV, PORT } from "./config/env.js";
 
 // Dynamically set servers based on environment
 const servers =
   NODE_ENV === "production"
     ? [
         {
-          url: SERVER_URL || "https://tanes.onrender.com",
+          url: "https://tanes.onrender.com",
           description: "Production (Render)",
         },
       ]
