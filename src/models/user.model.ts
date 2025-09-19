@@ -1,13 +1,28 @@
-import mongoose from "mongoose";
+import { Schema, model, Document } from "mongoose";
 
-const userSchema = new mongoose.Schema(
+// 🔹 Define allowed roles
+export type UserRole = "user" | "admin" | "moderator";
+
+// 🔹 Attributes required to create a User
+export interface UserAttrs {
+  name: string;
+  email: string;
+  password: string;
+  role: UserRole;
+}
+
+// 🔹 Document type for a User in MongoDB
+export interface UserDocument extends Document, UserAttrs {}
+
+// 🔹 Schema definition
+const userSchema = new Schema<UserDocument>(
   {
     name: {
       type: String,
       required: [true, "Name is required"],
       trim: true,
-      minLength: 3,
-      maxLength: 50,
+      minlength: 3,
+      maxlength: 50,
     },
     email: {
       type: String,
@@ -20,7 +35,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: [true, "Password is required"],
-      minLength: 6,
+      minlength: 6,
     },
     role: {
       type: String,
@@ -31,6 +46,7 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const User = mongoose.model("User", userSchema);
+// 🔹 Create model with typed document
+const User = model<UserDocument>("User", userSchema);
 
 export default User;
