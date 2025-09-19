@@ -39,7 +39,29 @@ const options: swaggerJsdoc.Options = {
       },
     },
     security: [{ bearerAuth: [] }],
-    paths: {},
+    paths: {
+      "/api/v1/health": {
+        get: {
+          summary: "Health check",
+          description: "Returns API health status",
+          responses: {
+            "200": {
+              description: "API is healthy",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      status: { type: "string", example: "ok" },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   },
   apis: docPaths,
 };
