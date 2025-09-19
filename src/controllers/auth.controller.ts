@@ -14,7 +14,13 @@ export const login = async (
   next: NextFunction
 ) => {
   try {
-    const { email, password } = req.body;
+    const { email, password } = req.body as { email: string; password: string };
+
+    if (!email || !password) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Email and password are required." });
+    }
 
     // Check if the user exists
     const user = await User.findOne({ email });
@@ -63,10 +69,19 @@ export const register = async (
   session.startTransaction();
 
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password } = req.body as {
+      name: string;
+      email: string;
+      password: string;
+    };
+
+    if (!name || !email || !password) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Missing required fields." });
+    }
 
     const existingUser = await User.findOne({ email });
-
     if (existingUser) {
       const error = new Error("User already exists!") as Error & {
         statusCode?: number;
@@ -111,7 +126,7 @@ export const register = async (
 };
 
 export const logout = async (
-  req: Request,
+  _req: Request,
   res: Response,
   next: NextFunction
 ) => {
