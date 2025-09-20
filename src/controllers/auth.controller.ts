@@ -125,6 +125,25 @@ export const register = async (
   }
 };
 
+export const getMyAccount = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ success: false, message: "Unauthorized" });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: req.user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const logout = async (
   _req: Request,
   res: Response,

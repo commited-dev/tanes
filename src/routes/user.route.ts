@@ -9,8 +9,12 @@ import {
   getUserById,
   updateUser,
 } from "../controllers/user.controller.js";
+import { getMyAccount } from "../controllers/auth.controller.js";
 
 const userRouter = Router();
+
+// ✅ Only logged in user can get his account details
+userRouter.get("/my-account", authenticateUser, getMyAccount);
 
 // ✅ Only admins can get all users
 userRouter.get("/", authenticateUser, authorizeUser("admin"), getAllUsers);

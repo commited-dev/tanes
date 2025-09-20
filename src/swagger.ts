@@ -37,6 +37,56 @@ const options: swaggerJsdoc.Options = {
           bearerFormat: "JWT",
         },
       },
+      responses: {
+        UnauthorizedError: {
+          description: "Unauthorized - JWT token missing or invalid",
+          content: {
+            "application/json": {
+              schema: { $ref: "#/components/schemas/ErrorResponse" },
+              example: {
+                success: false,
+                error: "Unauthorized: No token provided",
+              },
+            },
+          },
+        },
+        ForbiddenError: {
+          description: "Forbidden - insufficient permissions",
+          content: {
+            "application/json": {
+              schema: { $ref: "#/components/schemas/ErrorResponse" },
+              example: {
+                success: false,
+                error: "Forbidden: insufficient role",
+              },
+            },
+          },
+        },
+        NotFoundError: {
+          description: "Resource not found",
+          content: {
+            "application/json": {
+              schema: { $ref: "#/components/schemas/ErrorResponse" },
+              example: {
+                success: false,
+                error: "Resource not found",
+              },
+            },
+          },
+        },
+        ServerError: {
+          description: "Internal server error",
+          content: {
+            "application/json": {
+              schema: { $ref: "#/components/schemas/ErrorResponse" },
+              example: {
+                success: false,
+                error: "Server Error",
+              },
+            },
+          },
+        },
+      },
     },
     security: [{ bearerAuth: [] }],
     paths: {
