@@ -3,6 +3,18 @@
 A simple **Node.js + Express + TypeScript** REST API with **role-based authentication**, **JWT security**, and **Swagger documentation**.  
 Built with MongoDB (Mongoose) and designed for extensibility.
 
+## Live Demo
+
+- Here you can check how the swagger will gone look like -> https://tanes.onrender.com/api-docs/
+
+**How it works**
+
+- 1. Register as new user
+- 2. Login
+- 3. Copy the token and paste it into "Authorization" that is placed in top right corner
+
+**NOTE** - because it's deployed on a free tier on render for demo purposes, after you click the link you will need to wait couple minutes until the server is starting.
+
 ---
 
 ## 🚀 Features
