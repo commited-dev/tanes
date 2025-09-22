@@ -48,6 +48,18 @@ Built with MongoDB (Mongoose) and designed for extensibility.
 
 ---
 
+## 🛠️ Prerequisites
+
+Before running this application, make sure you have the following added to your project;
+
+- Node.js (v22 or higher)
+- npm or yarn
+- Git
+- MongoDB -> MongoDB Atlas -> https://www.mongodb.com/cloud/atlas/register
+- Arcjet -> https://app.arcjet.com/auth/signin
+
+---
+
 ## 📦 Installation
 
 ```bash
@@ -70,6 +82,8 @@ MONGODB_URI=mongodb://localhost:27017/tanes
 JWT_SECRET=supersecret
 JWT_EXPIRES_IN=1d
 SERVER_URL=http://localhost:5500
+ARCJET_KEY=arcjet_key
+ARCJET_ENV=development
 ```
 
 ---
