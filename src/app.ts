@@ -1,5 +1,6 @@
 import express from "express";
 import type { Request, Response } from "express";
+import cookieParser from "cookie-parser";
 
 import { setupSwagger } from "./swagger.js";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
@@ -11,6 +12,8 @@ import postRouter from "./routes/post.route.js";
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 // ✅ Health check route
 app.get("/api/v1/health", (_req: Request, res: Response): void => {
