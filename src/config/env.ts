@@ -20,3 +20,5 @@ export const JWT_SECRET = getEnv("JWT_SECRET");
 export const JWT_EXPIRES_IN = getEnv("JWT_EXPIRES_IN", false) || "1d";
 export const ADMIN_ROLE = getEnv("ADMIN_ROLE", false) || "admin";
 export const USER_ROLE = getEnv("USER_ROLE", false) || "user";
+export const ARCJET_KEY = getEnv("ARCJET_KEY");
+export const ARCJET_ENV = getEnv("ARCJET_ENV");
